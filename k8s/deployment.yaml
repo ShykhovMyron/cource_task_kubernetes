@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: second-app-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: second-app
+      test: test-label
+  template:
+    metadata:
+      name: second-app
+      labels:
+        app: second-app
+        test: test-label
+    spec:
+      containers:
+        - name: first-app-image
+          image: shykhovmyron/first-app:2
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+
