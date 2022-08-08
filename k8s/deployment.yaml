@@ -18,6 +18,11 @@ spec:
       containers:
         - name: first-app-image
           image: shykhovmyron/first-app:2
-          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            periodSeconds: 10
+            initialDelaySeconds: 5
       restartPolicy: Always
 
